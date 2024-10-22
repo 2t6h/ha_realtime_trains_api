@@ -164,6 +164,8 @@ class RealtimeTrainLiveTrainTimeSensor(SensorEntity):
         for departure in departures:
             if not departure["isPassenger"] :
                 continue
+            if not departure["locationDetail"].get("realtimeDeparture", None):
+                continue
 
             departuredate = TIMEZONE.localize(datetime.fromisoformat(departure["runDate"]))
 
